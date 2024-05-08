@@ -1,13 +1,13 @@
 # debuginfo doesn't work yet
 %global debug_package %{nil}
 
-#%%global branch v1.5.0-rhel
-%global commit0 8a6d81c51b2a130a3c93d94587df81053e208e05
+%global branch v1.7.0-rhel
+%global commit0 4335c93224d9667f62e9ba382d9eae314a19c706
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch: 2
 Name: netavark
-Version: 1.5.1
+Version: 1.7.0
 Release: 2%{?dist}
 License: ASL 2.0 and BSD and MIT
 ExclusiveArch: %{rust_arches}
@@ -89,12 +89,22 @@ cp %{SOURCE2} .
 %license LICENSE
 %dir %{_libexecdir}/podman
 %{_libexecdir}/podman/%{name}
+/usr/lib/systemd/system/*
 %{_mandir}/man1/%{name}.1*
 
 %changelog
-* Wed Jun 07 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.5.1-2
-- update to 1.5.1 bugfix release
-- Resolves: #2211989
+* Wed Nov 15 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.7.0-2
+- update to the latest content of https://github.com/containers/netavark/tree/v1.7.0-rhel
+  (https://github.com/containers/netavark/commit/4335c93)
+- Resolves: RHEL-16299
+
+* Mon Jul 03 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.7.0-1
+- update to https://github.com/containers/netavark/releases/tag/v1.7.0
+- Related: #2176055
+
+* Mon May 22 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.6.0-1
+- update to https://github.com/containers/netavark/releases/tag/v1.6.0
+- Related: #2176055
 
 * Thu Apr 20 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.5.0-5
 - fix --dns-add command is not functioning
